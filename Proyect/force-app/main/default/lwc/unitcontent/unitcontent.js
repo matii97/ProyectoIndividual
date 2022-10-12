@@ -1,7 +1,5 @@
 import { LightningElement, wire, api, track } from 'lwc';
-import { MessageContext, subscribe, publish } from 'lightning/messageService';
 import getunitwrapper from '@salesforce/apex/UnitService.getUnitWrapper';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent'
 import registerUserAnswer from '@salesforce/apex/UnitService.registerUserAnswer';
 
 
@@ -54,30 +52,9 @@ export default class Unitcontent extends LightningElement {
 
     handleSubmit(event) {
         registerUserAnswer({
-                unitId: this.recordId,
-                jsonAnswer: JSON.stringify(this.optionSelectedjson)
-            })
-            /* .then((result) => {
-
-                if (result) {
-
-                    const event = new ShowToastEvent({
-                        title: 'Toast message',
-                        message: 'Felicitaciones',
-                        variant: 'success'
-                    });
-                    this.dispatchEvent(event);
-
-                } else if (result == false) {
-                    const event = new ShowToastEvent({
-                        title: 'Toast message',
-                        message: 'Respuesta Incorrectas',
-                        variant: 'Fail'
-                    });
-                    this.dispatchEvent(event);
-                }
-
-            }) */
+            unitId: this.recordId,
+            jsonAnswer: JSON.stringify(this.optionSelectedjson)
+        })
 
         .catch((error) => {
             console.log(error)
